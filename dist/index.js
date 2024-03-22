@@ -30336,9 +30336,8 @@ async function run() {
   await (0,backoff.backOff)(() => checkWARPRegistration(organization, true), {
     numOfAttempts: 20,
   });
-  await exec.exec("warp-cli", ["--accept-tos", "registration"]);
-  await exec.exec("warp-cli", ["--accept-tos", "registration new"]);
-  await exec.exec("warp-cli", ["--accept-tos", "registration show"]);
+  await exec.exec("warp-cli", ["--accept-tos", "registration",  "new"]);
+  await exec.exec("warp-cli", ["--accept-tos", "registration",  "show"]);
   await exec.exec("warp-cli", ["--accept-tos", "connect"]);
   await (0,backoff.backOff)(() => checkWARPConnected(), { numOfAttempts: 20 });
   core.saveState("connected", "true");
