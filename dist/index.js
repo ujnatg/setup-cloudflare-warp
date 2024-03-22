@@ -30222,7 +30222,7 @@ async function writeLinuxConfiguration(
   <key>auth_client_secret</key>
   <string>${auth_client_secret}</string>
   <key>service_mode</key>
-  <string>doh</string>
+  <string>warp+doh</string>
   <key>auto_connect</key>
   <integer>1</integer>
 </dict>
@@ -30336,6 +30336,7 @@ async function run() {
   await (0,backoff.backOff)(() => checkWARPRegistration(organization, true), {
     numOfAttempts: 20,
   });
+  await exec.exec("warp-cli", ["--accept-tos", "register"]);
   await exec.exec("warp-cli", ["--accept-tos", "connect"]);
   await (0,backoff.backOff)(() => checkWARPConnected(), { numOfAttempts: 20 });
   core.saveState("connected", "true");
