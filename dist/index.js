@@ -30221,6 +30221,10 @@ async function writeLinuxConfiguration(
   <string>${auth_client_id}</string>
   <key>auth_client_secret</key>
   <string>${auth_client_secret}</string>
+  <key>service_mode</key>
+  <string>doh</string>
+  <key>auto_connect</key>
+  <integer>1</integer>
 </dict>
   `;
   await exec.exec("sudo mkdir -p /var/lib/cloudflare-warp/");
